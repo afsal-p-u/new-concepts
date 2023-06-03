@@ -10,6 +10,12 @@ const Cart = () => {
   const showCart = useSelector((state) => state.cart.showCart) 
   const items = useSelector((state) => state.cart.itemList)
 
+  let total = 0
+
+  items?.map((item) => {
+    total += item.totalPrice
+  })
+
   const handleClose = () => {
     dispatch(cartActions.closeCart())
   }
@@ -33,7 +39,7 @@ const Cart = () => {
   return (
     <>
       {showCart && (
-        <div className='fixed top-0 right-0 w-[500px] h-[100vh] bg-[#eee] px-[30px] py-[20px]'>
+        <div className='fixed top-0 right-0 w-[500px] h-[100vh] bg-[#eee] px-[30px] py-[20px] overflow-y-scroll'>
           <div className="w-full h-20px flex justify-end">
             <div 
               className="p-[10px] bg-black rounded-full flex items-center justify-center cursor-pointer"
@@ -100,6 +106,14 @@ const Cart = () => {
               </div>
             </div>
           ))}
+
+          <div className="mt-2 flex items-center justify-end">
+            <h3
+              className='font-semibold'
+            >
+              Total: {total}
+            </h3>
+          </div>
         </div>
       )}
     </>
