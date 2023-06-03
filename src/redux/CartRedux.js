@@ -27,7 +27,20 @@ const cartSlice = createSlice({
             }
         },
         removeItemCart: (state, action) => {
-            
+            const existingItem = state.itemList.find((item) => item.id === action.payload)
+            if (existingItem.quantity > 1) {
+                existingItem.quantity--
+                existingItem.totalPrice -= existingItem.price
+            } else {
+                state.itemList = state.itemList.filter((item) => item.id !== action.payload)
+                state.totalQuantity--
+            }
+        },
+        openCart: (state) => {
+            state.showCart = true
+        },
+        closeCart: (state) => {
+            state.showCart = false
         }
     }
 })
