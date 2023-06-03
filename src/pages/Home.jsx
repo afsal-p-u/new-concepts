@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import Cart from './Cart'
 import { cartActions } from '../redux/CartRedux'
 import { authActions } from '../redux/AuthRedux'
 import { data } from '../constants/data'
-import Cart from './Cart'
 
 const Home = () => {
     const dispatch = useDispatch()
